@@ -33,14 +33,17 @@ else
     echo Processing: $PROJECT
     git clone $line
     
-    COMMITS=$( git shortlog -s -n --all  | awk '{ sum += $1; } END { print sum; }' "$@" )
+    cd $PROJECT
+    COMMITS=$(git shortlog -s -n --all | awk '{ sum += $1; } END { print sum; }' "$@" )
+    cd ..
+    echo $COMMITS
     echo \"$PROJECT\": { \"commits\": $COMMITS,   >> result.json
     echo \"stats\": >> result.json
     cloc --json $PROJECT >> result.json
     echo } >> result.json
     rm -rf $PROJECT
     START=0
-    # break
+    break
   done
   echo } >> result.json
 fi
