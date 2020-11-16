@@ -40,8 +40,7 @@ else
     echo } >> result.json
     rm -rf $PROJECT
     START=0
-
-    break
+    # break
   done
   echo } >> result.json
 fi
