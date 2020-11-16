@@ -26,7 +26,6 @@ node <<HERE
 HERE
 }
 
-
 NODE_NO_WARNINGS=1
 
 gitbeaker projects all --owned=1 --gb-token=$GITLAB_PERSONAL_KEY > temp.json
@@ -47,11 +46,13 @@ do
   rm -rf $PROJECT
   START=0
 done
-rm temp.json
 echo } >> result.json
 
 calculateTotal
-# rm result.json
 
+# rm result.json
+# rm temp.json
+
+# git shortlog -s -n --all  | awk '{ sum += $1; } END { print sum; }' "$@"
 
 #node -pe 'JSON.parse(process.argv[1]).forEach(({ ssh_url_to_repo }) => console.log(ssh_url_to_repo))' ($JSON_REPO_LIST)
